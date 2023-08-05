@@ -1,0 +1,48 @@
+const API_KEY = "a324378e99550b9cb203d178bf7b33de";
+
+
+async function showWeather() {
+
+    try {
+        let city = "mumbai";
+
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=
+        ${city}&appid=${API_KEY}&units=metric`);
+
+        const data = await response.json();
+        console.log("Weather data: -> ", data);
+
+
+        // let newPara = document.createElement('p');
+        // newPara.textContent = `${data?.main?.temp.toFixed(2)} °C`
+
+        document.body.appendChild(newPara);
+
+        // renderWeatherInfo(data);
+    }
+    catch (err) {
+        // handle the error
+    }
+
+
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else {
+        console.log("No GeoLocation Support");
+    }
+}
+
+function showPosition(position) {
+    let lat = position.coords.latitude;
+    let longi = position.coords.longitude;
+
+    console.log(lat);
+    console.log(longi);
+}
+
+
+
